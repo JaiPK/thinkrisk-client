@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+Html {
+    padding: 0;
+    margin: 0;
+    font: 100 14px/20px Roboto,Helvetica Neue,sans-serif;letter-spacing: normal;
+}
+.MuiAccordion-region{
+    max-height: 40vh;
+}
+ .sticky.top-16 .text-center.m-auto{
+    font: 100 11px/18px Roboto,Helvetica Neue,sans-serif;letter-spacing: normal !important;
+    }
+    .GLJotableContainer {
+        position: relative;
+        margin: 0 auto;
+        width: calc(100% - 50px) !important;
+    }
+    .GLJotableContainer thead > tr th {
+        background: #212121 !important;
+        color: #fff !important;
+    }
+
+    .GLJotableContainer table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+      
+    .GLJotableContainer th, td {
+        text-align: left;
+        padding: 8px;
+    }
+      
+    .GLJotableContainer tr:nth-child(even) {
+        background-color: whitesmoke;
+    }
+    .rulesStyle > div {
+        float: left;
+    }
+    .LoaderClass{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        z-index: 11;
+        left: 0;
+        width: 100%;
+        /* background: white; */
+        height: 42px;
+        margin-top: 10px;
+    }

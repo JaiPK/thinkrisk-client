@@ -1,0 +1,15 @@
+.saveChangesBtn{
+    /* fontSize: '0.8vw', textTransform: 'capitalize', padding: '1vh',backgroundColor: '#212121',color:'white' */
+    font-size:0.8vw !important;
+    text-transform : capitalize !important;
+    padding : 1vh !important;
+    background-color:#212121 !important;
+    color: white !important;
+}
+.cancelBtn{
+    font-size:0.8vw !important;
+    text-transform : capitalize !important;
+    padding : 1vh !important;
+    background-color:#0000001f !important;
+    color: black !important;
+}
