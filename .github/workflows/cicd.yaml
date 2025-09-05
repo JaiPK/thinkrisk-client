@@ -1,4 +1,4 @@
-name: Deply Thinkrisk Recat App to Azure
+name: Deply Thinkrisk React App to Azure
 on:
   push:
     branches:
@@ -11,13 +11,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2 
       - name: Build Docker Image
-        run: docker build -t thinkrisk-recat-app .
+        run: docker build -t thinkrisk-react-app .
       - name: Install grype
         run: |
           curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
       - name: Scan Docker Image for Vulnerabilities
-        run: grype thinkrisk-recat-app -o template -t csv.tmpl > grype-report.csv
+        run: grype thinkrisk-react-app -o template -t csv.tmpl > grype-report.csv
       - name: Delete old Docker Images
-        run: docker rm -f thinkrisk-recat-app || true
+        run: docker rm -f thinkrisk-react-app || true
       - name: Run Docker Container
-        run: docker run -d -p 3000:443 --name thinkrisk-recat-app thinkrisk-recat-app
+        run: docker run -d -p 3000:443 --name thinkrisk-react-app thinkrisk-react-app
