@@ -1,0 +1,22 @@
+{{- range .Matches }}
+  {{- $fixed := "" -}}
+  {{- $hasFix := false -}}
+  {{- if .Vulnerability.Fix.State }}
+    {{- if eq .Vulnerability.Fix.State "fixed" }}
+      {{- if gt (len .Vulnerability.Fix.Versions) 0 }}
+        {{- $fixed = (index .Vulnerability.Fix.Versions 0) -}}
+        {{- $hasFix = true -}}
+      {{- else }}
+        {{- $fixed = "N/A" -}}
+      {{- end }}
+    {{- else }}
+      {{- $fixed = "(won't fix)" -}}
+    {{- end }}
+  {{- else }}
+    {{- $fixed = "N/A" -}}
+  {{- end }}
+
+  {{- if or $hasFix (eq .Vulnerability.Severity "High") (eq .Vulnerability.Severity "Critical") }}
+    {{ .Artifact.Name }},{{ .Artifact.Version }},{{ $fixed }},{{ .Artifact.Type }},{{ .Vulnerability.ID }},{{ .Vulnerability.Severity }},{{ if .Vulnerability.EPSS }}{{ index .Vulnerability.EPSS 0 }}{{ else }}N/A{{ end }},{{ if .Vulnerability.Risk }}{{ printf "%.2f" .Vulnerability.Risk }}{{ else }}N/A{{ end }}
+  {{- end }}
+{{- end }}

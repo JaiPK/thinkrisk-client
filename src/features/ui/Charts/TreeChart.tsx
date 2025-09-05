@@ -84,7 +84,7 @@ function TreeChart({ data, doubleClick }: Props) {
                     onDoubleClick={()=> doubleClick(props)}
                 />
                 {depth === 1 ? (
-                    <text x={x + (width) / 2} y={y + (height) / 2} textAnchor="innerMiddle" fill="black" fontSize={12}>
+                    <text x={x + (width) / 2} y={y + (height) / 2} textAnchor="middle" fill="black" fontSize={12}>
                         {VENDOR_NAME}
                     </text>
                 ) : null}
