@@ -125,11 +125,11 @@ const LoginForm = (props: any) => {
     return (
         <div className="flex flex-col w-full">
             <div className="items-center m-auto">
-                {/* <img
+                <img
                     className="object-scale-down h-80 w-80"
                     src={thinkriskLogo}
                     alt="thinkrisk-logo"
-                /> */}
+                />
             </div>
             <div className="flex flex-col p-6 items-center">
                 <section className="flex flex-col w-8/12">

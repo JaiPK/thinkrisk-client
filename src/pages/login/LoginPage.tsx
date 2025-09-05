@@ -107,11 +107,11 @@ const LoginPage = () => {
                 
             </div>
             <div className="hidden md:flex w-full md:w-1/2 md:z-10">
-                <img
+                {/* <img
                 className="object-contain h-full w-full"
                     src={thinkriskLaptop}
                     alt="thinkrisk-laptop"
-                />
+                /> */}
             </div>
             <img
                 className="invisible md:visible absolute right-0 object-cover h-screen w-screen"
