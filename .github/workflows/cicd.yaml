@@ -1,3 +1,36 @@
+# name: Deploy Thinkrisk React App to Azure
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: self-hosted
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2 
+
+#       - name: Clean up old containers
+#         run: docker rm -f thinkrisk-react-app || true
+
+#       - name: Clean up dangling images
+#         run: docker image prune -f || true
+
+#       - name: Build Docker Image
+#         run: docker build -t thinkrisk-react-app .
+
+#       - name: Install grype
+#         run: |
+#           curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
+
+#       - name: Scan Docker Image for Vulnerabilities
+#         run: grype thinkrisk-react-app -o template -t csv.tmpl > /home/thinkrisk/grype-report.csv
+
+#       - name: Run Docker Container
+#         run: docker run -d -p 3000:443 --name thinkrisk-react-app thinkrisk-react-app
+
 name: Deploy Thinkrisk React App to Azure
 
 on:
@@ -25,8 +58,11 @@ jobs:
         run: |
           curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
 
+      - name: Make grype_exe.sh executable
+        run: chmod +x ./grype_exe.sh
+
       - name: Scan Docker Image for Vulnerabilities
-        run: grype thinkrisk-react-app -o template -t csv.tmpl > /home/thinkrisk/grype-report.csv
+        run: ./grype_exe.sh thinkrisk-react-app
 
       - name: Run Docker Container
         run: docker run -d -p 3000:443 --name thinkrisk-react-app thinkrisk-react-app
