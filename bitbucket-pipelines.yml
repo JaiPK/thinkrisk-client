@@ -6,33 +6,27 @@ pipelines:
           runs-on:
             - self.hosted
             - linux
+          image: ""   # ⬅️ this makes it run directly on the runner host, not in a docker image
           script:
-            # Cleanup any old container with same name
             - echo "🔹 Cleaning up old containers..."
             - docker rm -f thinkrisk-react-app || true
 
-            # Remove dangling images to save space
             - echo "🔹 Cleaning up dangling images..."
             - docker image prune -f || true
 
-            # Build Docker image
             - echo "🔹 Building Docker image..."
             - docker build -t thinkrisk-react-app .
 
-            # Install Grype (vulnerability scanner)
             - echo "🔹 Installing Grype..."
             - curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
 
-            # Run vulnerability scan
             - echo "🔹 Running Grype scan..."
             - chmod +x ./grype_exe.sh
             - ./grype_exe.sh thinkrisk-react-app
 
-            # Run Docker container (HTTPS on port 443 -> mapped to 3000 inside container)
             - echo "🔹 Starting container..."
             - docker run -d -p 443:3000 --restart always --name thinkrisk-react-app thinkrisk-react-app
 
-            # Send deployment notification email
             - echo "🔹 Sending notification email..."
             - chmod +x send_email.sh
             - ./send_email.sh
